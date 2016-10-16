@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.marmyshev.dt.designer.executor.ui.UiExecutableExtensionFactory:com.marmyshev.dt.designer.executor.ui.DesignerStartHandler"
+            id="com.marmyshev.dt.designer.executor.ui.commands.designerStart"
+            name="%command.DesignerStart.name">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=org.eclipse.ui.workbench.file">
+         <toolbar
+               id="com._1c.g5.v8.dt.platform.services.ui.toolbar">
+             <command
+                   commandId="com.marmyshev.dt.designer.executor.ui.commands.designerStart"
+                   icon="icons/1c_designer_16x16.png"
+                   id="com._1c.g5.v8.dt.platform.services.ui.toolbar.designerStart"
+                   label="%command.DesignerStart.name"
+                   style="push">
+         	</command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+</plugin>
