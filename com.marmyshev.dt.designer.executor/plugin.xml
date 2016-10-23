@@ -4,7 +4,7 @@
    <extension
          point="com._1c.g5.v8.dt.platform.services.core.runtimeComponentExecutors">
    	  <executor
-            class="com.marmyshev.dt.designer.executor.internal.ExecutableExtensionFactory:com.marmyshev.dt.designer.executor.DesignerLauncher"
+            class="com.marmyshev.dt.designer.executor.internal.ExecutableExtensionFactory:com.marmyshev.dt.designer.executor.AdvancedThickClientLauncher"
             type="com._1c.g5.v8.dt.platform.services.core.componentTypes.AdvancedThickClient">
       </executor>
    </extension>
