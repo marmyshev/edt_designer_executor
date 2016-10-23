@@ -18,6 +18,9 @@
    </extension>
    <extension
          point="com._1c.g5.v8.dt.platform.services.core.runtimeComponentResolvers">
+      <resolver
+            class="com.marmyshev.dt.designer.executor.internal.ExecutableExtensionFactory:com.marmyshev.dt.designer.executor.AdvancedFileRuntimeComponentResolver">
+      </resolver>
    </extension>
 
 </plugin>
