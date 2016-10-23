@@ -6,6 +6,12 @@
    	  <executor
             class="com.marmyshev.dt.designer.executor.internal.ExecutableExtensionFactory:com.marmyshev.dt.designer.executor.AdvancedThickClientLauncher"
             type="com._1c.g5.v8.dt.platform.services.core.componentTypes.AdvancedThickClient">
+      	<supportedRuntimes
+               runtime="com._1c.g5.v8.dt.platform.runtime.8.3.8">
+         </supportedRuntimes>
+         <supportedRuntimes
+               runtime="com._1c.g5.v8.dt.platform.runtime.8.3.9">
+         </supportedRuntimes>
       </executor>
    </extension>
    <extension
