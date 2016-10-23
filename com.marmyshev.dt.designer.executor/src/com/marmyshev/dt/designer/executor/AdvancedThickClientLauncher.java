@@ -8,9 +8,9 @@ import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.impl.RuntimeEx
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.impl.ThickClientLauncher;
 import com._1c.g5.v8.dt.platform.services.model.InfobaseReference;
 
-public class DesignerLauncher extends ThickClientLauncher implements IDesignerLauncher {
+public class AdvancedThickClientLauncher extends ThickClientLauncher implements IAdvancedThickClientLauncher {
 
-	public DesignerLauncher() {
+	public AdvancedThickClientLauncher() {
 		super();
 	}
 
