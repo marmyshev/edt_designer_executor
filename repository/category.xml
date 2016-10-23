@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/com.marmyshev.dt_1.0.0.qualifier.jar" id="com.marmyshev.dt" version="1.0.0.qualifier"> <category name="com.marmyshev.dt.designer_button.category.public"/> </feature>
-
-   
-   <category-def name="com.marmyshev.dt.designer_button.category.public" label="1C: Enterprise Development Tools Plugin"/>
+   <feature url="features/com.marmyshev.dt.designer_1.0.0.qualifier.jar" id="com.marmyshev.dt.designer" version="1.0.0.qualifier">
+      <category name="com.marmyshev.dt.designer.executor.category.public"/>
+   </feature>
+   <category-def name="com.marmyshev.dt.designer.executor.category.public" label="1C: Enterprise Development Tools Plugin"/>
 </site>

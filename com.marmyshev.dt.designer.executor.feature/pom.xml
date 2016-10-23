@@ -3,13 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.marmyshev.dt</groupId>
+    <groupId>com.marmyshev.dt.designer</groupId>
     <artifactId>build</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <relativePath>../build/pom.xml</relativePath>
   </parent>
-  <groupId>com.marmyshev.dt.designer_button.feature</groupId>
-  <artifactId>com.marmyshev.dt</artifactId>
+  <groupId>com.marmyshev.dt.designer.executor.feature</groupId>
+  <artifactId>com.marmyshev.dt.designer</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>eclipse-feature</packaging>
   <build>

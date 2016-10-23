@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
   xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.marmyshev.dt</groupId>
+  <groupId>com.marmyshev.dt.designer</groupId>
   <artifactId>build</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>1C:Enterprise Development Tools Plugin</name>
@@ -27,10 +27,10 @@
   <modules>
     <module>../target</module>
     
-    <module>../com.marmyshev.dt.designer_button</module>
-    <module>../com.marmyshev.dt.designer_button.tests</module>
-    <module>../com.marmyshev.dt.designer_button.feature</module>
-    <module>../com.marmyshev.dt.designer_button.ui</module>
+    <module>../com.marmyshev.dt.designer.executor</module>
+    <module>../com.marmyshev.dt.designer.executor.tests</module>
+    <module>../com.marmyshev.dt.designer.executor.feature</module>
+    <module>../com.marmyshev.dt.designer.executor.ui</module>
 
     
     <module>../repository</module>
@@ -52,7 +52,7 @@
           <pomDependencies>consider</pomDependencies>
           <target>
             <artifact>
-              <groupId>com.marmyshev.dt.target</groupId>
+              <groupId>com.marmyshev.dt.designer.target</groupId>
               <artifactId>default</artifactId>
               <version>1.0.0-SNAPSHOT</version>
             </artifact>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.marmyshev.dt"
+      id="com.marmyshev.dt.designer"
       label="%featureName"
       version="1.0.0.qualifier"
       provider-name="%providerName">
@@ -13,8 +13,8 @@
       [Enter Copyright Description here.]
    </copyright>
 
-   <plugin id="com.marmyshev.dt.designer_button" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
-   <plugin id="com.marmyshev.dt.designer_button.ui" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
+   <plugin id="com.marmyshev.dt.designer.executor" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
+   <plugin id="com.marmyshev.dt.designer.executor.ui" download-size="0" install-size="0" version="0.0.0" unpack="false"/>
 
    
       
