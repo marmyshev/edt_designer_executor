@@ -46,7 +46,17 @@ public class AdvancedThickClientLauncher extends ThickClientLauncher implements 
 	@Override
 	public void createDistributionFile(ILaunchableRuntimeComponent component, InfobaseReference infobase,
 			RuntimeExecutionArguments executionArguments, Path file) {
-		// TODO Auto-generated method stub
+
+		RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
+				RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
+
+		builder.forInfobase(infobase, true);
+
+		appendInfobaseAccess(builder, executionArguments);
+
+		builder.createDistributionFile(file.toAbsolutePath().toString());
+
+		executeRuntimeProcessCommand(builder);
 
 	}
 
