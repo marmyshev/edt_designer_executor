@@ -13,8 +13,6 @@ public class DesignerInfobaseLauncher {
 
 	public void run() {
 		// TODO Auto-generated method stub
-		System.out.println(
-				Messages.DesignerInfobaseLauncher_starting_1c_designer_for_infobase + infobaseReference.getName());
 
 	}
 
