@@ -2,7 +2,9 @@ package com.marmyshev.dt.designer.executor.ui;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -56,7 +58,6 @@ public class DesignerStartHandler extends AbstractInfobaseCommandHandler {
 
 	public DesignerStartHandler() {
 		super();
-		super.setBaseEnabled(false);
 	}
 
 	@Override
@@ -95,24 +96,24 @@ public class DesignerStartHandler extends AbstractInfobaseCommandHandler {
 		}
 
 		ISelection selection = page.getSelection();
-		boolean infobaseSelected = false;
+		List<InfobaseReference> infobases = new ArrayList<>();
 
 		if (selection != null & selection instanceof IStructuredSelection) {
 			IStructuredSelection strucSelection = (IStructuredSelection) selection;
 			for (Iterator<Object> iterator = strucSelection.iterator(); iterator.hasNext();) {
 				Object element = iterator.next();
 				if (element instanceof InfobaseReference) {
-					InfobaseReference infobaseReference = (InfobaseReference) element;
 
-					// Run Designer
-					runStartDesigner(display, infobaseReference);
-
-					infobaseSelected = true;
+					if (!infobases.contains(element)) {
+						infobases.add((InfobaseReference) element);
+					}
 				}
 			}
 		}
 
-		if (infobaseSelected) {
+		if (infobases.size() > 0) {
+			// Start Designer for all selected infobases
+			runStartDesigner(display, infobases);
 			return null;
 		}
 
@@ -121,17 +122,27 @@ public class DesignerStartHandler extends AbstractInfobaseCommandHandler {
 			return null;
 		}
 
-
-
-		if (!PlatformUI.getWorkbench().saveAllEditors(false)) {
+		if (!PlatformUI.getWorkbench().saveAllEditors(true)) {
 			return null;
 		}
 
 		IInfobaseAssociation association = infobaseManager.getAssociation(project);
 		if (association != null) {
 
-			// Run Designer with default infobase
-			runStartDesigner(display, association.getDefaultInfobase());
+			if (association.getInfobases().size() > 1) {
+
+				if (MessageDialog.openQuestion(shell, null,
+						Messages.DesignerStartHandler_Selected_project_has_several_infobases_Start_1C_Designer_for_all)) {
+					infobases.addAll(association.getInfobases());
+				} else {
+					infobases.add(association.getDefaultInfobase());
+				}
+
+			} else {
+				// Run Designer with default infobase
+				infobases.add(association.getDefaultInfobase());
+			}
+			runStartDesigner(display, infobases);
 		}
 
 		return null;
@@ -172,12 +183,21 @@ public class DesignerStartHandler extends AbstractInfobaseCommandHandler {
 
 	}
 
-	protected void runStartDesigner(Display display, InfobaseReference infobase) {
+	protected void runStartDesigner(Display display, List<InfobaseReference> infobases) {
 
 		Shell shell = display.getActiveShell();
 
-		if (infobase.getInfobaseType() == InfobaseType.WEB) {
-			display.asyncExec(new Runnable() {
+		List<InfobaseReference> webInfobases = new ArrayList<>();
+
+		for (InfobaseReference infobase : infobases) {
+			if (infobase.getInfobaseType() == InfobaseType.WEB) {
+				webInfobases.add(infobase);
+				infobases.remove(infobase);
+			}
+		}
+
+		if (webInfobases.size() > 0) {
+			display.syncExec(new Runnable() {
 
 				@Override
 				public void run() {
@@ -185,7 +205,9 @@ public class DesignerStartHandler extends AbstractInfobaseCommandHandler {
 							Messages.DesignerStartHandler_Designer_cannot_be_started_for_web_infobases);
 				}
 			});
+		}
 
+		if (infobases.size() == 0) {
 			return;
 		}
 
@@ -196,10 +218,20 @@ public class DesignerStartHandler extends AbstractInfobaseCommandHandler {
 				@Override
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 
-					monitor.setTaskName(MessageFormat.format(
-							Messages.DesignerInfobaseLauncher_Starting_1c_designer_for_infobase, infobase.getName()));
+					if (infobases.size() == 1) {
+						InfobaseReference infobase = infobases.get(0);
+						monitor.setTaskName(MessageFormat.format(
+								Messages.DesignerStartHandler_Starting_1c_designer_for_infobase,
+								infobase.getName()));
+						startDesigner(display, infobase);
 
-					startDesigner(display, infobase);
+					} else {
+						monitor.setTaskName(Messages.DesignerStartHandler_Starting_1c_designer_for_selected_infobases);
+						for (InfobaseReference infobase : infobases) {
+							startDesigner(display, infobase);
+						}
+					}
+
 					monitor.done();
 
 				}
@@ -260,10 +292,6 @@ public class DesignerStartHandler extends AbstractInfobaseCommandHandler {
 				&& thickClient.first instanceof ILaunchableRuntimeComponent) {
 			RuntimeExecutionArguments arguments = buildArguments(infobase);
 
-			// ((IAdvancedThickClientLauncher) thickClient.second)
-			// .startDesigner((ILaunchableRuntimeComponent) thickClient.first,
-			// infobase, arguments);
-
 			DesignerStartJob job = new DesignerStartJob((ILaunchableRuntimeComponent) thickClient.first,
 					(IAdvancedThickClientLauncher) thickClient.second, infobase, arguments);
 			job.setUser(true);
@@ -281,7 +309,7 @@ public class DesignerStartHandler extends AbstractInfobaseCommandHandler {
 
 		public DesignerStartJob(ILaunchableRuntimeComponent component, IAdvancedThickClientLauncher thickClient,
 				InfobaseReference infobase, RuntimeExecutionArguments arguments) {
-			super(MessageFormat.format(Messages.DesignerInfobaseLauncher_Starting_1c_designer_for_infobase,
+			super(MessageFormat.format(Messages.DesignerStartHandler_Starting_1c_designer_for_infobase,
 					infobase.getName()));
 			this.component = component;
 			this.thickClient = thickClient;

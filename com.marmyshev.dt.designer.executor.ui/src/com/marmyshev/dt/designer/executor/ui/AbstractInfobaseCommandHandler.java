@@ -21,7 +21,6 @@ public abstract class AbstractInfobaseCommandHandler extends AbstractHandler {
 
 
 	public AbstractInfobaseCommandHandler() {
-		// TODO Auto-generated constructor stub
 	}
 
 	protected IResolvableRuntimeInstallation getRuntimeInstallation(InfobaseReference infobase) {
