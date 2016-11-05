@@ -17,7 +17,7 @@ public class Activator
     public static final String PLUGIN_ID = "com.marmyshev.dt.designer.executor"; //$NON-NLS-1$
     private static Activator plugin;
 
-	private Injector injector;
+    private Injector injector;
 
     private BundleContext bundleContext;
 
@@ -81,8 +81,7 @@ public class Activator
      * @param throwable throwable, can be <code>null</code> if not applicable
      * @return status created warning status, never <code>null</code>
      */
-    public static IStatus createWarningStatus(final String message,
-        Exception throwable)
+    public static IStatus createWarningStatus(final String message, Exception throwable)
     {
         return new Status(IStatus.WARNING, PLUGIN_ID, 0, message, throwable);
     }
@@ -113,25 +112,30 @@ public class Activator
         return bundleContext;
     }
 
-	/**
-	 * Get plugin Guice-injector. Method is synchronized.
-	 *
-	 * @return plugin Guice-injector, never <code>null</code>
-	 */
-	public synchronized Injector getInjector() {
-		if (injector == null)
-			return injector = createInjector();
-		return injector;
-	}
+    /**
+     * Get plugin Guice-injector. Method is synchronized.
+     *
+     * @return plugin Guice-injector, never <code>null</code>
+     */
+    public synchronized Injector getInjector()
+    {
+        if (injector == null)
+            return injector = createInjector();
+        return injector;
+    }
 
-	private Injector createInjector() {
-		try {
-			return Guice.createInjector(new ExternalDependencies(this));
-		} catch (Exception e) {
-			log(createErrorStatus("Failed to create injector for " //$NON-NLS-1$
-					+ getBundle().getSymbolicName(), e));
-			throw new RuntimeException("Failed to create injector for " //$NON-NLS-1$
-					+ getBundle().getSymbolicName(), e);
-		}
-	}
+    private Injector createInjector()
+    {
+        try
+        {
+            return Guice.createInjector(new ExternalDependencies(this));
+        }
+        catch (Exception e)
+        {
+            log(createErrorStatus("Failed to create injector for " //$NON-NLS-1$
+                + getBundle().getSymbolicName(), e));
+            throw new RuntimeException("Failed to create injector for " //$NON-NLS-1$
+                + getBundle().getSymbolicName(), e);
+        }
+    }
 }

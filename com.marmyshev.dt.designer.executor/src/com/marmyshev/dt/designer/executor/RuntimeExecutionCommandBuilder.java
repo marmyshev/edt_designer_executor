@@ -5,22 +5,26 @@ import java.io.File;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.impl.RuntimeExecutionCommandBuilder$ThickClientMode;
 
 public class RuntimeExecutionCommandBuilder
-		extends com._1c.g5.v8.dt.platform.services.core.runtimes.execution.impl.RuntimeExecutionCommandBuilder {
+    extends com._1c.g5.v8.dt.platform.services.core.runtimes.execution.impl.RuntimeExecutionCommandBuilder
+{
 
-	public RuntimeExecutionCommandBuilder(File file, RuntimeExecutionCommandBuilder$ThickClientMode clientMode) {
-		super(file, clientMode);
-	}
+    public RuntimeExecutionCommandBuilder(File file, RuntimeExecutionCommandBuilder$ThickClientMode clientMode)
+    {
+        super(file, clientMode);
+    }
 
-	public void visible() {
+    public void visible()
+    {
 
-		appendOption(commands, "VISIBLE"); //$NON-NLS-1$
-	}
+        appendOption(commands, "VISIBLE"); //$NON-NLS-1$
+    }
 
-	public void createDistributionFile(String file) {
-		appendOption(commands, "CreateDistributionFile"); //$NON-NLS-1$
+    public void createDistributionFile(String file)
+    {
+        appendOption(commands, "CreateDistributionFile"); //$NON-NLS-1$
 
-		appendOptionParameter(commands, file);
+        appendOptionParameter(commands, file);
 
-	}
+    }
 
 }

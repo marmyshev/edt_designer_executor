@@ -87,8 +87,7 @@ public class Activator
      * @param throwable throwable, can be <code>null</code> if not applicable
      * @return status created warning status, never <code>null</code>
      */
-    public static IStatus createWarningStatus(final String message,
-        Exception throwable)
+    public static IStatus createWarningStatus(final String message, Exception throwable)
     {
         return new Status(IStatus.WARNING, PLUGIN_ID, 0, message, throwable);
     }
@@ -167,7 +166,6 @@ public class Activator
             return injector = createInjector();
         return injector;
     }
-    
 
     private Injector createInjector()
     {

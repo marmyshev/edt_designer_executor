@@ -7,17 +7,19 @@ import com.google.inject.Injector;
 import com.marmyshev.dt.designer.executor.Activator;
 
 public class ExecutableExtensionFactory
-		extends AbstractGuiceAwareExecutableExtensionFactory {
+    extends AbstractGuiceAwareExecutableExtensionFactory
+{
 
+    @Override
+    protected Bundle getBundle()
+    {
+        return Activator.getDefault().getBundle();
+    }
 
-	@Override
-	protected Bundle getBundle() {
-		return Activator.getDefault().getBundle();
-	}
-
-	@Override
-	protected Injector getInjector() {
-		return Activator.getDefault().getInjector();
-	}
+    @Override
+    protected Injector getInjector()
+    {
+        return Activator.getDefault().getInjector();
+    }
 
 }

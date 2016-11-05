@@ -8,56 +8,62 @@ import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.impl.RuntimeEx
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.impl.ThickClientLauncher;
 import com._1c.g5.v8.dt.platform.services.model.InfobaseReference;
 
-public class AdvancedThickClientLauncher extends ThickClientLauncher implements IAdvancedThickClientLauncher {
+public class AdvancedThickClientLauncher
+    extends ThickClientLauncher
+    implements IAdvancedThickClientLauncher
+{
 
-	public AdvancedThickClientLauncher() {
-		super();
-	}
+    public AdvancedThickClientLauncher()
+    {
+        super();
+    }
 
-	@Override
-	public void startDesigner(ILaunchableRuntimeComponent component, InfobaseReference infobase,
-			RuntimeExecutionArguments executionArguments) {
+    @Override
+    public void startDesigner(ILaunchableRuntimeComponent component, InfobaseReference infobase,
+        RuntimeExecutionArguments executionArguments)
+    {
 
-		// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
 
-		if (splitInfobaseConnection()) {
-		} else {
-			RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
-					RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
+        if (!splitInfobaseConnection())
+        {
+            RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
+                RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
 
-			builder.visible();
+            builder.visible();
 
-			builder.forInfobase(infobase, true);
+            builder.forInfobase(infobase, true);
 
-			appendInfobaseAccess(builder, executionArguments);
+            appendInfobaseAccess(builder, executionArguments);
 
-			executeRuntimeProcessCommand(builder);
+            executeRuntimeProcessCommand(builder);
 
-		}
+        }
 
-		// TODO: Find new version from exeption
+        // TODO: Find new version from exeption
 
-		// thickClient =
-		// findRequired(com._1c.g5.v8.dt.platform.services.core.runtimes.execution.RuntimeVersionRequiredException.getVersion(),
-		// com._1c.g5.v8.dt.platform.services.core.runtimes.execution.RuntimeVersionRequiredException.getBuild());
+        // thickClient =
+        // findRequired(com._1c.g5.v8.dt.platform.services.core.runtimes.execution.RuntimeVersionRequiredException.getVersion(),
+        // com._1c.g5.v8.dt.platform.services.core.runtimes.execution.RuntimeVersionRequiredException.getBuild());
 
-	}
+    }
 
-	@Override
-	public void createDistributionFile(ILaunchableRuntimeComponent component, InfobaseReference infobase,
-			RuntimeExecutionArguments executionArguments, Path file) {
+    @Override
+    public void createDistributionFile(ILaunchableRuntimeComponent component, InfobaseReference infobase,
+        RuntimeExecutionArguments executionArguments, Path file)
+    {
 
-		RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
-				RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
+        RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
+            RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
 
-		builder.forInfobase(infobase, true);
+        builder.forInfobase(infobase, true);
 
-		appendInfobaseAccess(builder, executionArguments);
+        appendInfobaseAccess(builder, executionArguments);
 
-		builder.createDistributionFile(file.toAbsolutePath().toString());
+        builder.createDistributionFile(file.toAbsolutePath().toString());
 
-		executeRuntimeProcessCommand(builder);
+        executeRuntimeProcessCommand(builder);
 
-	}
+    }
 
 }

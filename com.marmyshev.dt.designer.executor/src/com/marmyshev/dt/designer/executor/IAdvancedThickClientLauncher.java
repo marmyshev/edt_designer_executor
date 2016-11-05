@@ -7,11 +7,13 @@ import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.ILaunchableRun
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.IThickClientLauncher;
 import com._1c.g5.v8.dt.platform.services.model.InfobaseReference;
 
-public interface IAdvancedThickClientLauncher extends IThickClientLauncher {
+public interface IAdvancedThickClientLauncher
+    extends IThickClientLauncher
+{
 
-	public void startDesigner(ILaunchableRuntimeComponent component, InfobaseReference infobase,
-			RuntimeExecutionArguments executionArguments);
+    public void startDesigner(ILaunchableRuntimeComponent component, InfobaseReference infobase,
+        RuntimeExecutionArguments executionArguments);
 
-	public void createDistributionFile(ILaunchableRuntimeComponent component, InfobaseReference infobase,
-			RuntimeExecutionArguments executionArguments, Path file);
+    public void createDistributionFile(ILaunchableRuntimeComponent component, InfobaseReference infobase,
+        RuntimeExecutionArguments executionArguments, Path file);
 }

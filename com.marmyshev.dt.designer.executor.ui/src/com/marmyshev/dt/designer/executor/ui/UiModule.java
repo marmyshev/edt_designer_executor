@@ -14,20 +14,24 @@ import com.google.inject.name.Names;
 /**
  * TODO: javadoc
  */
-public class UiModule extends AbstractServiceAwareModule {
-	public UiModule(Plugin bundle) {
-		super(bundle);
-	}
+public class UiModule
+    extends AbstractServiceAwareModule
+{
+    public UiModule(Plugin bundle)
+    {
+        super(bundle);
+    }
 
-	@Override
-	protected void doConfigure() {
-		bind(IInfobaseManager.class).toService();
-		bind(IRuntimeInstallationManager.class)
-				.annotatedWith(Names.named("com._1c.g5.v8.dt.platform.services.core.runtimeType.EnterprisePlatform")) //$NON-NLS-1$
-				.toService();
-		bind(IRuntimeComponentManager.class).toService();
-		bind(IResolvableRuntimeInstallationManager.class).toService();
-		bind(IInfobaseAccessManager.class).toService();
-		bind(IProcessEncodingProvider.class).toService();
-	}
+    @Override
+    protected void doConfigure()
+    {
+        bind(IInfobaseManager.class).toService();
+        bind(IRuntimeInstallationManager.class).annotatedWith(
+            Names.named("com._1c.g5.v8.dt.platform.services.core.runtimeType.EnterprisePlatform")) //$NON-NLS-1$
+            .toService();
+        bind(IRuntimeComponentManager.class).toService();
+        bind(IResolvableRuntimeInstallationManager.class).toService();
+        bind(IInfobaseAccessManager.class).toService();
+        bind(IProcessEncodingProvider.class).toService();
+    }
 }
