@@ -34,7 +34,7 @@ To the toolbar added a button ![1C:Designer](https://github.com/marmyshev/edt_de
 
 ## Плагин расширения для Eclipse [1C:Enterprise Development Tools](http://v8.1c.ru/overview/release_IDE_beta/)
 
-Позволяет запускать [1С:Конфигуратор](http://v8.1c.ru/overview/Term_000000008.htm) в любых выбранных  [Информационных базах](http://v8.1c.ru/overview/Term_000000641.htm) или в [Информационнах базах](http://v8.1c.ru/overview/Term_000000641.htm) привязанных к проекту.
+Позволяет запускать [1С:Конфигуратор](http://v8.1c.ru/overview/Term_000000008.htm) в любых выбранных  [Информационных базах](http://v8.1c.ru/overview/Term_000000641.htm) или в [Информационных базах](http://v8.1c.ru/overview/Term_000000641.htm) привязанных к проекту.
 
 Плагин еще в разработке.
 
