@@ -24,7 +24,7 @@ Will update soon.
 
 Start [1C:Enterprise Development Tools](http://1c-dn.com/1c_enterprise/1c_enterprise_developmet_tools_graphite/).
 
-To the toolbar added a button ![1C:Designer](../blob/master/com.marmyshev.dt.designer.executor.ui/icons/1c_designer_16x16.png?raw=true) for running a 1C:Designer.
+To the toolbar added a button ![1C:Designer](https://github.com/marmyshev/edt_designer_executor/blob/master/com.marmyshev.dt.designer.executor.ui/icons/1c_designer_16x16.png?raw=true) for running a 1C:Designer.
 
 
 * Select one or several Infobases in __Infobase view__, then click __1C:Designer__ button to run Designers for each infobase.
@@ -56,7 +56,7 @@ To the toolbar added a button ![1C:Designer](../blob/master/com.marmyshev.dt.des
 
 Запустите [1C:Enterprise Development Tools](http://v8.1c.ru/overview/release_IDE_beta/).
 
-На панель инструментов добавлена кнопка ![1C:Designer](../blob/master/com.marmyshev.dt.designer.executor.ui/icons/1c_designer_16x16.png?raw=true) позволяющая запускать 1С:Конфигуратор.
+На панель инструментов добавлена кнопка ![1C:Designer](https://github.com/marmyshev/edt_designer_executor/blob/master/com.marmyshev.dt.designer.executor.ui/icons/1c_designer_16x16.png?raw=true) позволяющая запускать 1С:Конфигуратор.
 
 
 * Выделите одну или несколько информационных баз в списке __Infobase view__, затем кликните кнопку __1С:Конфигуратор__ чтобы запустить конфигуратор в каждой информационной базе.
