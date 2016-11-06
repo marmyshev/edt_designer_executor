@@ -33,7 +33,26 @@
          type="com._1c.g5.v8.dt.platform.services.core.componentTypes.AdvancedThickClient">
       </image>
    </extension>
-   <extention
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerActionBinding
+            viewerId="com._1c.g5.v8.dt.platform.services.ui.InfobasesView">
+         <includes>
+            <actionExtension
+                  pattern="com.marmyshev.dt.designer.executor.ui.InfobasDesigner.actions">
+            </actionExtension>
+         </includes>
+      </viewerActionBinding>
+      <viewerActionBinding
+            viewerId="com._1c.g5.v8.dt.ui2.navigator">
+         <includes>
+            <actionExtension
+                  pattern="com.marmyshev.dt.designer.executor.ui.InfobasDesigner.actions">
+            </actionExtension>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+   <extension
    		point="org.eclipse.ui.navigator.navigatorContent">
    	  <actionProvider
             class="com.marmyshev.dt.designer.executor.ui.UiExecutableExtensionFactory:com.marmyshev.dt.internal.designer.executor.ui.InfobasesViewActionProvider"
@@ -55,6 +74,6 @@
             </or>
          </enablement>
       </actionProvider>
-   </extention>
+   </extension>
 
 </plugin>

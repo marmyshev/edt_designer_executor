@@ -52,7 +52,7 @@ public class InfobasesViewActionProvider
     @Override
     public void init(ICommonActionExtensionSite aSite)
     {
-        init(aSite);
+        super.init(aSite);
 
         actions = new ArrayList<IAction>();
 
@@ -82,9 +82,9 @@ public class InfobasesViewActionProvider
 
     protected void createActions(CommonViewer viewer, ISelectionProvider provider)
     {
-        InfobaseDesignerAction runDesigner = infobaseDesignerActionProvider.get();
+        InfobaseDesignerAction startDesigner = infobaseDesignerActionProvider.get();
 
-        actions.add(runDesigner);
+        actions.add(startDesigner);
 
     }
 
