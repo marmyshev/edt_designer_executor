@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2016, 1C
  */
-package com.marmyshev.dt.designer.executor.ui;
+package com.marmyshev.dt.designer.executor.ui.actions;
 
 import org.eclipse.jface.action.Action;
 
