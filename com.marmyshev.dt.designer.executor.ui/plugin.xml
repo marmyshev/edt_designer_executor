@@ -26,5 +26,12 @@
          </toolbar>
       </menuContribution>
    </extension>
+   <extension
+         point="com._1c.g5.v8.dt.platform.services.ui.runtimeComponentImages">
+      <image
+      	 icon="icons/1c_designer_16x16.png"
+         type="com._1c.g5.v8.dt.platform.services.core.componentTypes.AdvancedThickClient">
+      </image>
+   </extension>
 
 </plugin>
