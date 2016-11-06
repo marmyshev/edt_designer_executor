@@ -33,5 +33,28 @@
          type="com._1c.g5.v8.dt.platform.services.core.componentTypes.AdvancedThickClient">
       </image>
    </extension>
+   <extention
+   		point="org.eclipse.ui.navigator.navigatorContent">
+   	  <actionProvider
+            class="com.marmyshev.dt.designer.executor.ui.UiExecutableExtensionFactory:com.marmyshev.dt.internal.designer.executor.ui.InfobasesViewActionProvider"
+            id="com.marmyshev.dt.designer.executor.ui.InfobasDesigner.actions"
+            priority="normal">
+         <enablement>
+            <or>
+               <instanceof
+                     value="com._1c.g5.v8.dt.platform.services.model.InfobaseReference">
+               </instanceof>
+               <and>
+                  <instanceof
+                        value="org.eclipse.core.resources.IProject">
+                  </instanceof>
+                  <test
+                        property="com._1c.g5.v8.dt.platform.services.ui.infobases.infobaseAssociated">
+                  </test>
+               </and>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extention>
 
 </plugin>
