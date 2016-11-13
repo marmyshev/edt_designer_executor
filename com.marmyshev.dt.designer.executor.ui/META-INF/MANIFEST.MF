@@ -15,7 +15,12 @@ Require-Bundle: com.google.inject;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.core.resources,
  com._1c.g5.wiring,
  com._1c.g5.v8.dt.platform.services.model;bundle-version="3.0.0",
- com._1c.g5.v8.dt.common;bundle-version="3.0.0"
+ com._1c.g5.v8.dt.common;bundle-version="3.0.0",
+ com._1c.g5.v8.dt.launching.ui;bundle-version="[3.0.0,4.0.0)",
+ com._1c.g5.v8.dt.debug.ui;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.debug.core;bundle-version="3.10.0",
+ org.eclipse.debug.ui;bundle-version="3.11.101",
+ com._1c.g5.v8.dt.core;bundle-version="[3.0.0,4.0.0)"
 Import-Package: com._1c.g5.wiring;version="[1.0.0,2.0.0)",
  com.marmyshev.dt.designer.executor;version="[1.0.0,2.0.0)",
  org.osgi.framework;version="[1.8.0,2.0.0)",
