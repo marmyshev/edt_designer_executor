@@ -24,8 +24,6 @@ public class AdvancedThickClientLauncher
         RuntimeExecutionArguments executionArguments)
     {
 
-        // TODO Auto-generated method stub
-
         if (!splitInfobaseConnection())
         {
             RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
@@ -68,7 +66,7 @@ public class AdvancedThickClientLauncher
     }
 
     @Override
-    public Pair runClient(ILaunchableRuntimeComponent component, InfobaseReference infobase,
+    public Pair<String, Process> runClient(ILaunchableRuntimeComponent component, InfobaseReference infobase,
         RuntimeExecutionArguments executionArguments)
     {
 
@@ -81,8 +79,11 @@ public class AdvancedThickClientLauncher
 
         appendInfobaseAccess(builder, executionArguments);
 
-//        thickClient = new Pair();
-        return null;
+        // TODO: Catch RuntimeExecption
+
+        Pair<String, Process> thickClient =
+            new Pair<String, Process>(component.getLaunchable().getAbsolutePath(), builder.start());
+        return thickClient;
 
     }
 
