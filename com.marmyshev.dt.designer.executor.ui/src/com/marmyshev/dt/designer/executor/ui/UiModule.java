@@ -2,6 +2,7 @@ package com.marmyshev.dt.designer.executor.ui;
 
 import org.eclipse.core.runtime.Plugin;
 
+import com._1c.g5.v8.dt.core.platform.IConfigurationManager;
 import com._1c.g5.v8.dt.platform.services.core.infobases.IInfobaseAccessManager;
 import com._1c.g5.v8.dt.platform.services.core.infobases.IInfobaseManager;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.IProcessEncodingProvider;
@@ -33,5 +34,6 @@ public class UiModule
         bind(IResolvableRuntimeInstallationManager.class).toService();
         bind(IInfobaseAccessManager.class).toService();
         bind(IProcessEncodingProvider.class).toService();
+        bind(IConfigurationManager.class).toService();
     }
 }
