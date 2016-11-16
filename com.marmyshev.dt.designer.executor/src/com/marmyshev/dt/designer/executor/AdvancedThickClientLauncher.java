@@ -19,25 +19,21 @@ public class AdvancedThickClientLauncher
         super();
     }
 
-    @Override
-    public void startDesigner(ILaunchableRuntimeComponent component, InfobaseReference infobase,
-        RuntimeExecutionArguments executionArguments)
-    {
+	@Override
+	public void startDesigner(ILaunchableRuntimeComponent component, InfobaseReference infobase,
+			RuntimeExecutionArguments executionArguments) {
 
-        if (!splitInfobaseConnection())
-        {
-            RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
-                RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
+		RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
+				RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
 
-            builder.visible();
+		builder.visible();
 
-            builder.forInfobase(infobase, true);
+		builder.forInfobase(infobase, splitInfobaseConnection());
 
-            appendInfobaseAccess(builder, executionArguments);
+		appendInfobaseAccess(builder, executionArguments);
 
-            executeRuntimeProcessCommand(builder);
-
-        }
+		executeRuntimeProcessCommand(builder);
+        
 
         // TODO: Find new version from exeption
 
@@ -55,7 +51,7 @@ public class AdvancedThickClientLauncher
         RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
             RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
 
-        builder.forInfobase(infobase, true);
+        builder.forInfobase(infobase, splitInfobaseConnection());
 
         appendInfobaseAccess(builder, executionArguments);
 
