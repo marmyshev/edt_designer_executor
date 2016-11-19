@@ -33,7 +33,7 @@ public class AdvancedThickClientLauncher
 		appendInfobaseAccess(builder, executionArguments);
 
 		executeRuntimeProcessCommand(builder);
-        
+
 
         // TODO: Find new version from exeption
 
@@ -71,7 +71,7 @@ public class AdvancedThickClientLauncher
 
         builder.visible();
 
-        builder.forInfobase(infobase, true);
+        builder.forInfobase(infobase, splitInfobaseConnection());
 
         appendInfobaseAccess(builder, executionArguments);
 

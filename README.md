@@ -24,9 +24,10 @@ Will update soon.
 
 Start [1C:Enterprise Development Tools](http://1c-dn.com/1c_enterprise/1c_enterprise_developmet_tools_graphite/).
 
-To the toolbar added a button ![1C:Designer](https://github.com/marmyshev/edt_designer_executor/blob/master/com.marmyshev.dt.designer.executor.ui/icons/1c_designer_16x16.png?raw=true) for running a 1C:Designer.
+Able to launch Designer from standard launch configs. To the toolbar added a button ![1C:Designer](https://github.com/marmyshev/edt_designer_executor/blob/master/com.marmyshev.dt.designer.executor.ui/icons/1c_designer_16x16.png?raw=true) for running a 1C:Designer directly.
 
 
+* Use shurtcut Alt+Shift+D D to run Designer in "Debug" mode or Alt+Shift+X D in "Run" mode of launching configs.
 * Select one or several Infobases in __Infobase view__, then click __1C:Designer__ button to run Designers for each infobase.
 * For Associated Infobase(s) to your 1C:EDT project - select the project and then click __1C:Designer__ button to run all infobases or default (first) infobase.
 
@@ -56,8 +57,9 @@ To the toolbar added a button ![1C:Designer](https://github.com/marmyshev/edt_de
 
 Запустите [1C:Enterprise Development Tools](http://v8.1c.ru/overview/release_IDE_beta/).
 
-На панель инструментов добавлена кнопка ![1C:Designer](https://github.com/marmyshev/edt_designer_executor/blob/master/com.marmyshev.dt.designer.executor.ui/icons/1c_designer_16x16.png?raw=true) позволяющая запускать 1С:Конфигуратор.
+Возможно запустить Конфигуратор из стандартных настроке запуска. На панель инструментов добавлена кнопка ![1C:Designer](https://github.com/marmyshev/edt_designer_executor/blob/master/com.marmyshev.dt.designer.executor.ui/icons/1c_designer_16x16.png?raw=true) позволяющая запускать 1С:Конфигуратор непосредственно.
 
 
+* Нажмите Alt+Shift+D D для старта Конфигуратора в режиме "Отладки" или Alt+Shift+X D в режиме "Запуск" из конфигураций запуска.
 * Выделите одну или несколько информационных баз в списке __Infobase view__, затем кликните кнопку __1С:Конфигуратор__ чтобы запустить конфигуратор в каждой информационной базе.
 * Для информационных баз, привязанных к вашему 1С:EDT проекту, выделите проект и кликните кнопку __1С:Конфигуратор__ чтобы запустить все или ИБ по умолчанию (первую).
