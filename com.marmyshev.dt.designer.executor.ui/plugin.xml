@@ -75,5 +75,50 @@
          </enablement>
       </actionProvider>
    </extension>
-
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="com.marmyshev.dt.designer.executor.ui.UiExecutableExtensionFactory:com.marmyshev.dt.designer.executor.ui.DesignerLaunchShortcut"
+            description="%DesignerShortcutDescription"
+            icon="icons/1c_designer_16x16.png"
+            id="com._1c.g5.v8.dt.launching.ui.shortcut.Designer"
+            label="%DesignerShortcutLabel"
+            modes="run, debug">
+            <contextualLaunch>
+                <enablement>
+                </enablement>
+            </contextualLaunch>
+            <configurationType
+               id="com._1c.g5.v8.dt.launching.core.RuntimeClient">
+            </configurationType>
+      </shortcut>
+   </extension>
+   <extension
+          point="org.eclipse.ui.commands">
+       <command
+             categoryId="org.eclipse.debug.ui.category.run"
+             description="%command.Designer.run.description"
+             id="com._1c.g5.v8.dt.launching.ui.shortcut.Designer.run"
+             name="%command.Designer.run.name">
+       </command>
+       <command
+             categoryId="org.eclipse.debug.ui.category.run"
+             description="%command.Designer.debug.description"
+             id="com._1c.g5.v8.dt.launching.ui.shortcut.Designer.debug"
+             name="%command.Designer.debug.name">
+       </command>
+   </extension>
+   <extension
+          point="org.eclipse.ui.bindings">
+       <key
+             commandId="com._1c.g5.v8.dt.launching.ui.shortcut.Designer.run"
+             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+             sequence="M2+M3+X D">
+       </key>
+       <key
+             commandId="com._1c.g5.v8.dt.launching.ui.shortcut.Designer.debug"
+             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+             sequence="M2+M3+D D">
+       </key>
+   </extension>
 </plugin>

@@ -2,6 +2,7 @@ package com.marmyshev.dt.designer.executor;
 
 import java.nio.file.Path;
 
+import com._1c.g5.v8.dt.common.Pair;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.RuntimeExecutionArguments;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.ILaunchableRuntimeComponent;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.impl.RuntimeExecutionCommandBuilder$ThickClientMode;
@@ -18,27 +19,21 @@ public class AdvancedThickClientLauncher
         super();
     }
 
-    @Override
-    public void startDesigner(ILaunchableRuntimeComponent component, InfobaseReference infobase,
-        RuntimeExecutionArguments executionArguments)
-    {
+	@Override
+	public void startDesigner(ILaunchableRuntimeComponent component, InfobaseReference infobase,
+			RuntimeExecutionArguments executionArguments) {
 
-        // TODO Auto-generated method stub
+		RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
+				RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
 
-        if (!splitInfobaseConnection())
-        {
-            RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
-                RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
+		builder.visible();
 
-            builder.visible();
+		builder.forInfobase(infobase, splitInfobaseConnection());
 
-            builder.forInfobase(infobase, true);
+		appendInfobaseAccess(builder, executionArguments);
 
-            appendInfobaseAccess(builder, executionArguments);
+		executeRuntimeProcessCommand(builder);
 
-            executeRuntimeProcessCommand(builder);
-
-        }
 
         // TODO: Find new version from exeption
 
@@ -56,13 +51,35 @@ public class AdvancedThickClientLauncher
         RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
             RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
 
-        builder.forInfobase(infobase, true);
+        builder.forInfobase(infobase, splitInfobaseConnection());
 
         appendInfobaseAccess(builder, executionArguments);
 
         builder.createDistributionFile(file.toAbsolutePath().toString());
 
         executeRuntimeProcessCommand(builder);
+
+    }
+
+    @Override
+    public Pair<String, Process> runClient(ILaunchableRuntimeComponent component, InfobaseReference infobase,
+        RuntimeExecutionArguments executionArguments)
+    {
+
+        RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
+            RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
+
+        builder.visible();
+
+        builder.forInfobase(infobase, splitInfobaseConnection());
+
+        appendInfobaseAccess(builder, executionArguments);
+
+        // TODO: Catch RuntimeExecption
+
+        Pair<String, Process> thickClient =
+            new Pair<String, Process>(component.getLaunchable().getAbsolutePath(), builder.start());
+        return thickClient;
 
     }
 

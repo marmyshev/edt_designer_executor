@@ -6,6 +6,8 @@ public class Messages
     extends NLS
 {
     private static final String BUNDLE_NAME = "com.marmyshev.dt.designer.executor.ui.messages"; //$NON-NLS-1$
+    public static String DesignerLaunchShortcut_Name_suffix;
+    public static String DesignerLaunchShortcut_Title;
     public static String DesignerStartHandler_Cannot_find_installed_thick_client;
     public static String DesignerStartHandler_Cannot_start_Designer;
     public static String DesignerStartHandler_Designer;
