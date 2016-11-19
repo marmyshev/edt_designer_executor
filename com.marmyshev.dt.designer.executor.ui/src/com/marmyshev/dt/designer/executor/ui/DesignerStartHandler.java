@@ -3,21 +3,15 @@ package com.marmyshev.dt.designer.executor.ui;
 import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
@@ -30,7 +24,6 @@ import com._1c.g5.v8.dt.common.Pair;
 import com._1c.g5.v8.dt.platform.services.core.infobases.IInfobaseAssociation;
 import com._1c.g5.v8.dt.platform.services.core.infobases.IInfobaseManager;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.IRuntimeInstallationManager;
-import com._1c.g5.v8.dt.platform.services.core.runtimes.RuntimeExecutionArguments;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.environments.IResolvableRuntimeInstallation;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.ILaunchableRuntimeComponent;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.IRuntimeComponent;
@@ -99,40 +92,15 @@ public class DesignerStartHandler
                 @Override
                 public void run()
                 {
-                    MessageDialog.openInformation(shell, Messages.DesignerStartHandler_Designer,
-                        Messages.DesignerStartHandler_Not_found_installed_1c_enterprise_platform);
+                    MessageDialog.openInformation(shell, Messages.Actions_Designer,
+                        Messages.Actions_Not_found_installed_1c_enterprise_platform);
                 }
             });
 
             return null;
         }
 
-        ISelection selection = page.getSelection();
         List<InfobaseReference> infobases = new ArrayList<>();
-
-        if (selection != null & selection instanceof IStructuredSelection)
-        {
-            IStructuredSelection strucSelection = (IStructuredSelection)selection;
-            for (Iterator<Object> iterator = strucSelection.iterator(); iterator.hasNext();)
-            {
-                Object element = iterator.next();
-                if (element instanceof InfobaseReference)
-                {
-
-                    if (!infobases.contains(element))
-                    {
-                        infobases.add((InfobaseReference)element);
-                    }
-                }
-            }
-        }
-
-        if (infobases.size() > 0)
-        {
-            // Start Designer for all selected infobases
-            runStartDesigner(display, infobases);
-            return null;
-        }
 
         IProject project = com._1c.g5.v8.dt.platform.services.ui.SelectionContextProject.getContextProject(page);
         if (project == null)
@@ -148,10 +116,8 @@ public class DesignerStartHandler
         IInfobaseAssociation association = infobaseManager.getAssociation(project);
         if (association != null)
         {
-
             if (association.getInfobases().size() > 1)
             {
-
                 if (MessageDialog.openQuestion(shell, null,
                     Messages.DesignerStartHandler_Selected_project_has_several_infobases_Start_1C_Designer_for_all))
                 {
@@ -161,7 +127,6 @@ public class DesignerStartHandler
                 {
                     infobases.add(association.getDefaultInfobase());
                 }
-
             }
             else
             {
@@ -197,22 +162,6 @@ public class DesignerStartHandler
                 return true;
             }
         }
-
-        ISelection selection = page.getSelection();
-
-        if (selection != null & selection instanceof IStructuredSelection)
-        {
-            IStructuredSelection strucSelection = (IStructuredSelection)selection;
-            for (Iterator<Object> iterator = strucSelection.iterator(); iterator.hasNext();)
-            {
-                Object element = iterator.next();
-                if (element instanceof InfobaseReference)
-                {
-                    return true;
-                }
-            }
-        }
-
         return false;
 
     }
@@ -224,8 +173,9 @@ public class DesignerStartHandler
 
         List<InfobaseReference> webInfobases = new ArrayList<>();
 
-        for (InfobaseReference infobase : infobases)
+        for (int i = infobases.size() - 1; i >= 0; i--)
         {
+            InfobaseReference infobase = infobases.get(i);
             if (infobase.getInfobaseType() == InfobaseType.WEB)
             {
                 webInfobases.add(infobase);
@@ -241,8 +191,8 @@ public class DesignerStartHandler
                 @Override
                 public void run()
                 {
-                    MessageDialog.openInformation(shell, Messages.DesignerStartHandler_Designer,
-                        Messages.DesignerStartHandler_Designer_cannot_be_started_for_web_infobases);
+                    MessageDialog.openInformation(shell, Messages.Actions_Designer,
+                        Messages.Actions_Designer_cannot_be_started_for_web_infobases);
                 }
             });
         }
@@ -298,7 +248,7 @@ public class DesignerStartHandler
                     if (!display.isDisposed())
                     {
                         RuntimeExecutionErrorDialog.openError(shell,
-                            Messages.DesignerStartHandler_Cannot_start_Designer, e);
+                            Messages.Actions_Cannot_start_Designer, e);
                     }
                 }
             });
@@ -325,7 +275,6 @@ public class DesignerStartHandler
         try
         {
             installation = resolvable.get("com._1c.g5.v8.dt.platform.services.core.componentTypes.AdvancedThickClient"); //$NON-NLS-1$
-
         }
         catch (Exception e)
         {
@@ -347,7 +296,7 @@ public class DesignerStartHandler
                 public void run()
                 {
                     Shell shell = display.getActiveShell();
-                    MessageDialog.openInformation(shell, Messages.DesignerStartHandler_Designer,
+                    MessageDialog.openInformation(shell, Messages.Actions_Designer,
                         Messages.DesignerStartHandler_Cannot_find_installed_thick_client);
                 }
             });
@@ -358,45 +307,12 @@ public class DesignerStartHandler
         if (thickClient.second instanceof IAdvancedThickClientLauncher
             && thickClient.first instanceof ILaunchableRuntimeComponent)
         {
-            RuntimeExecutionArguments arguments = buildArguments(infobase);
 
-            DesignerStartJob job = new DesignerStartJob((ILaunchableRuntimeComponent)thickClient.first,
-                (IAdvancedThickClientLauncher)thickClient.second, infobase, arguments);
+            StartDesignerJob job = new StartDesignerJob((ILaunchableRuntimeComponent)thickClient.first,
+                (IAdvancedThickClientLauncher)thickClient.second, infobase, display);
+            Activator.getDefault().getInjector().injectMembers(job);
             job.setUser(true);
             job.schedule();
-        }
-
-    }
-
-    private class DesignerStartJob
-        extends Job
-    {
-
-        private ILaunchableRuntimeComponent component;
-        private IAdvancedThickClientLauncher thickClient;
-        private InfobaseReference infobase;
-        private RuntimeExecutionArguments arguments;
-
-        public DesignerStartJob(ILaunchableRuntimeComponent component, IAdvancedThickClientLauncher thickClient,
-            InfobaseReference infobase, RuntimeExecutionArguments arguments)
-        {
-            super(MessageFormat.format(Messages.DesignerStartHandler_Starting_1c_designer_for_infobase,
-                infobase.getName()));
-            this.component = component;
-            this.thickClient = thickClient;
-            this.infobase = infobase;
-            this.arguments = arguments;
-
-        }
-
-        @Override
-        protected IStatus run(IProgressMonitor monitor)
-        {
-
-            thickClient.startDesigner(component, infobase, arguments);
-
-            monitor.done();
-            return Status.OK_STATUS;
         }
 
     }

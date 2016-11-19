@@ -17,7 +17,7 @@ import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import com.marmyshev.dt.designer.executor.ui.actions.InfobaseDesignerAction;
+import com.marmyshev.dt.designer.executor.ui.InfobaseDesignerAction;
 
 /**
  * @author marmyshev_d
