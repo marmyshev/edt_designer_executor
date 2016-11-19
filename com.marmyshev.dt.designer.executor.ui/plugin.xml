@@ -27,6 +27,55 @@
       </menuContribution>
    </extension>
    <extension
+         point="com._1c.g5.v8.dt.platform.services.ui.runtimeComponentImages">
+      <image
+      	 icon="icons/1c_designer_16x16.png"
+         type="com._1c.g5.v8.dt.platform.services.core.componentTypes.AdvancedThickClient">
+      </image>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerActionBinding
+            viewerId="com._1c.g5.v8.dt.platform.services.ui.InfobasesView">
+         <includes>
+            <actionExtension
+                  pattern="com.marmyshev.dt.designer.executor.ui.InfobasDesigner.actions">
+            </actionExtension>
+         </includes>
+      </viewerActionBinding>
+      <viewerActionBinding
+            viewerId="com._1c.g5.v8.dt.ui2.navigator">
+         <includes>
+            <actionExtension
+                  pattern="com.marmyshev.dt.designer.executor.ui.InfobasDesigner.actions">
+            </actionExtension>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+   <extension
+   		point="org.eclipse.ui.navigator.navigatorContent">
+   	  <actionProvider
+            class="com.marmyshev.dt.designer.executor.ui.UiExecutableExtensionFactory:com.marmyshev.dt.internal.designer.executor.ui.InfobasesViewActionProvider"
+            id="com.marmyshev.dt.designer.executor.ui.InfobasDesigner.actions"
+            priority="normal">
+         <enablement>
+            <or>
+               <instanceof
+                     value="com._1c.g5.v8.dt.platform.services.model.InfobaseReference">
+               </instanceof>
+               <and>
+                  <instanceof
+                        value="org.eclipse.core.resources.IProject">
+                  </instanceof>
+                  <test
+                        property="com._1c.g5.v8.dt.platform.services.ui.infobases.infobaseAssociated">
+                  </test>
+               </and>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   <extension
          point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
             class="com.marmyshev.dt.designer.executor.ui.UiExecutableExtensionFactory:com.marmyshev.dt.designer.executor.ui.DesignerLaunchShortcut"
