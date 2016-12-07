@@ -75,13 +75,38 @@ public class DesignerStartHandler
         IWorkbenchPage page;
         if (activePart == null)
         {
-
             page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-
         }
         else
         {
             page = activePart.getSite().getPage();
+        }
+
+        if (!runtimeInstallationManager.isSupportedByOs())
+        {
+            display.asyncExec(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    MessageDialog.openInformation(shell, Messages.Actions_Designer,
+                        Messages.Actions_1C_Enterprise_Platform_is_not_supported_by_os);
+                }
+            });
+            return null;
+        }
+
+        if (runtimeInstallationManager.getAll().isEmpty() && !runtimeInstallationManager.searchAvailable())
+        {
+            display.syncExec(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    MessageDialog.openInformation(shell, Messages.Actions_Designer,
+                        Messages.Actions_Cannot_find_available_1C_Enterprise_Platform);
+                }
+            });
         }
 
         if (runtimeInstallationManager.getAll().isEmpty())

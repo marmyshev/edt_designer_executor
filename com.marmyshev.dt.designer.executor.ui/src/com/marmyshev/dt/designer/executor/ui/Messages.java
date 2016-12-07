@@ -9,6 +9,8 @@ public class Messages
     public static String DesignerLaunchShortcut_Name_suffix;
     public static String DesignerLaunchShortcut_Title;
     public static String DesignerStartHandler_Cannot_find_installed_thick_client;
+    public static String Actions_1C_Enterprise_Platform_is_not_supported_by_os;
+    public static String Actions_Cannot_find_available_1C_Enterprise_Platform;
     public static String Actions_Cannot_start_Designer;
     public static String Actions_Designer;
     public static String Actions_Designer_cannot_be_started_for_web_infobases;

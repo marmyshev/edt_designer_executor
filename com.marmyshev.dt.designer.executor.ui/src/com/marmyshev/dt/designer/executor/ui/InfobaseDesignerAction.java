@@ -80,6 +80,33 @@ public class InfobaseDesignerAction
 
         Shell shell = (display == null) ? null : display.getActiveShell();
 
+        if (!runtimeInstallationManager.isSupportedByOs())
+        {
+            display.asyncExec(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    MessageDialog.openInformation(shell, Messages.Actions_Designer,
+                        Messages.Actions_1C_Enterprise_Platform_is_not_supported_by_os);
+                }
+            });
+            return;
+        }
+
+        if (runtimeInstallationManager.getAll().isEmpty() && !runtimeInstallationManager.searchAvailable())
+        {
+            display.syncExec(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    MessageDialog.openInformation(shell, Messages.Actions_Designer,
+                        Messages.Actions_Cannot_find_available_1C_Enterprise_Platform);
+                }
+            });
+        }
+
         if (runtimeInstallationManager.getAll().isEmpty())
         {
             display.asyncExec(new Runnable()
