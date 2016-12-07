@@ -168,8 +168,6 @@ public class DesignerLaunchShortcut
         return false;
     }
 
-
-
     @Override
     protected String getLaunchConfigurationSelectionTitle()
     {
