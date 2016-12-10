@@ -1,6 +1,6 @@
 # 1C:EDT Designer Executor
 
-## Eclipse extention plugin for [1C:Enterprise Development Tools](http://1c-dn.com/1c_enterprise/1c_enterprise_developmet_tools_graphite/)
+## Eclipse extension plugin for [1C:Enterprise Development Tools](http://1c-dn.com/1c_enterprise/1c_enterprise_developmet_tools_graphite/)
 
 Allows to run [1C:Enterprise Designer](http://1c-dn.com/glossary/designer/) with any selected [Infobases](http://1c-dn.com/glossary/infobase/) or with [Infobases](http://1c-dn.com/glossary/infobase/) of a project.
 
@@ -10,7 +10,7 @@ Still under construction.
 
 ### Necessary components
 
-1. 1C:Enterprise Development Tools version 1.3.0 (http://1c-dn.com/1c_enterprise/1c_enterprise_developmet_tools_graphite/)
+1. 1C:Enterprise Development Tools version 1.4.0 (http://1c-dn.com/1c_enterprise/1c_enterprise_developmet_tools_graphite/)
 2. Eclipse Mars2 (4.5.2) for RCP and RAP Developers (http://www.eclipse.org/downloads/packages/eclipse-rcp-and-rap-developers/mars2)
 3. Java SE Development Kit 8u111 (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
@@ -43,7 +43,7 @@ Able to launch Designer from standard launch configs. To the toolbar added a but
 
 ### Необходимые компоненты
 
-1. 1C:Enterprise Development Tools версии 1.3.0 (https://releases.1c.ru/version_files?nick=DevelopmentTools10&ver=1.3.0.753)
+1. 1C:Enterprise Development Tools версии 1.4.0 (https://releases.1c.ru/version_files?nick=DevelopmentTools10&ver=1.4.0.699)
 2. Eclipse Mars2 (4.5.2) for RCP and RAP Developers (http://www.eclipse.org/downloads/packages/eclipse-rcp-and-rap-developers/mars2)
 3. Java SE Development Kit 8u111 (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
