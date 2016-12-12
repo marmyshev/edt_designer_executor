@@ -66,54 +66,38 @@ public class DesignerLaunchShortcut
         try
         {
             String resolvableAsString =
-                candidate.getAttribute("com._1c.g5.v8.dt.debug.core.ATTR_RUNTIME_INSTALLATION", ""); //$NON-NLS-1$ //$NON-NLS-2$
+                candidate.getAttribute("com._1c.g5.v8.dt.debug.core.ATTR_RUNTIME_INSTALLATION", (String)null); //$NON-NLS-1$
 
-            if (resolvableAsString != null)
+            IResolvableRuntimeInstallation resolvable = resolvableAsString == null ? null
+                : this.resolvableRuntimeInstallationManager.deserialize(resolvableAsString);
+
+            RuntimeInstallation installation =
+                resolvable == null ? null : resolvable.get(new String[] { this.getRuntimeComponentTypeId() });
+
+            boolean runtimeSupportsClientType = installation == null
+                || this.runtimeComponentManager.supportsExecution(installation, this.getRuntimeComponentTypeId());
+
+            if (!forLaunch && resolvable != null)
             {
-                boolean runtimeSupportsClientType = false;
-
-                IResolvableRuntimeInstallation resolvable =
-                    resolvableRuntimeInstallationManager.deserialize(resolvableAsString);
-
-                if (!forLaunch && resolvable != null)
-                {
-                    RuntimeInstallation installation = resolvable.get(getRuntimeComponentTypeId());
-                    if (installation != null)
-                    {
-                        if (runtimeComponentManager.supportsExecution(installation, getRuntimeComponentTypeId())
-                            && getRuntimeComponentTypeId().equals(getExecutionClientTypeId(candidate, resolvable)))
-                        {
-                            runtimeSupportsClientType = true;
-                        }
-                    }
-                }
-                else
-                {
-                    runtimeSupportsClientType = matches(project, candidate, !forLaunch);
-                }
-
-                if (runtimeSupportsClientType)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                runtimeSupportsClientType &=
+                    this.getRuntimeComponentTypeId().equals(this.getExecutionClientTypeId(candidate, resolvable));
             }
+
+            return super.matches(project, candidate, forLaunch) && runtimeSupportsClientType;
+
         }
-        catch (CoreException e)
+        catch (Exception e)
         {
             Activator.logError(e);
+            return false;
         }
-
-        return false;
     }
 
     protected String getExecutionClientTypeId(ILaunchConfiguration configuration,
         IResolvableRuntimeInstallation resolvable) throws CoreException
     {
-        String infobaseUuid = configuration.getAttribute("com._1c.g5.v8.dt.debug.core.ATTR_INFOBASE_UUID", ""); //$NON-NLS-1$ //$NON-NLS-2$
+        String infobaseUuid =
+            configuration.getAttribute("com._1c.g5.v8.dt.debug.core.ATTR_INFOBASE_UUID", (String)null); //$NON-NLS-1$
 
         InfobaseReference infobase = null;
 
@@ -129,30 +113,27 @@ public class DesignerLaunchShortcut
     @Override
     protected boolean validateConfiguration(ILaunchConfiguration configuration, String mode) throws CoreException
     {
-        String correctProject = configuration.getAttribute("com._1c.g5.v8.dt.debug.core.ATTR_PROJECT_NAME", ""); //$NON-NLS-1$ //$NON-NLS-2$
-        String infobaseUuid = configuration.getAttribute("com._1c.g5.v8.dt.debug.core.ATTR_INFOBASE_UUID", ""); //$NON-NLS-1$ //$NON-NLS-2$
+        boolean correctProject =
+            configuration.getAttribute("com._1c.g5.v8.dt.debug.core.ATTR_PROJECT_NAME", (String)null) != null; //$NON-NLS-1$
+        String infobaseUuid =
+            configuration.getAttribute("com._1c.g5.v8.dt.debug.core.ATTR_INFOBASE_UUID", (String)null); //$NON-NLS-1$
         String resolvableAsString =
-            configuration.getAttribute("com._1c.g5.v8.dt.debug.core.ATTR_RUNTIME_INSTALLATION", ""); //$NON-NLS-1$ //$NON-NLS-2$
+            configuration.getAttribute("com._1c.g5.v8.dt.debug.core.ATTR_RUNTIME_INSTALLATION", (String)null); //$NON-NLS-1$
 
-        InfobaseReference correctInfobase = null;
-        IResolvableRuntimeInstallation correctRuntime = null;
+        boolean correctInfobase = false;
+        boolean correctRuntime = false;
 
         if (!Strings.isNullOrEmpty(infobaseUuid))
         {
-            correctInfobase = infobaseManager.get(UUID.fromString(infobaseUuid));
+            correctInfobase = infobaseManager.get(UUID.fromString(infobaseUuid)) != null;
         }
 
         if (resolvableAsString != null)
         {
-            correctRuntime = resolvableRuntimeInstallationManager.deserialize(resolvableAsString);
+            correctRuntime = resolvableRuntimeInstallationManager.deserialize(resolvableAsString) != null;
         }
 
-        if (correctProject != null && correctInfobase != null && correctRuntime != null)
-        {
-            return true;
-        }
-        return false;
-
+        return correctProject && correctInfobase && correctRuntime;
     }
 
     @Override
