@@ -7,7 +7,7 @@ script: mvn --batch-mode --errors --fail-at-end --show-version -s build/settings
 deploy:
   provider: releases
   api_key: $GITHUB_OAUTH_TOKEN
-  file: "repository/target/repository-*.zip"
+  file: $TRAVIS_BUILD_DIR/repository/target/repository-1.0.0-SNAPSHOT.zip
   skip_cleanup: true
   on:
     tags: true
