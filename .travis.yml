@@ -2,4 +2,4 @@ language: java
 jdk:
   - oraclejdk8
 sudo: false
-script: mvn --batch-mode --errors --fail-at-end --show-version -s build/settings.xml -Dpartners.v8.1c.ru.username=$1C_USERNAME -Dpartners.v8.1c.ru.password=$1C_PASSWORD clean verify -f build/pom.xml
+script: mvn --batch-mode --errors --fail-at-end --show-version -s build/settings.xml -Dpartners.v8.1c.ru.username=$USERNAME_1C -Dpartners.v8.1c.ru.password=$PASSWORD_1C clean verify -f build/pom.xml
