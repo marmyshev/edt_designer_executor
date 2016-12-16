@@ -3,3 +3,11 @@ jdk:
   - oraclejdk8
 sudo: false
 script: mvn --batch-mode --errors --fail-at-end --show-version -s build/settings.xml -Dpartners.v8.1c.ru.username=$USERNAME_1C -Dpartners.v8.1c.ru.password=$PASSWORD_1C clean verify -f build/pom.xml
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_OAUTH_TOKEN
+  file: "repository/target/repository-*.zip"
+  skip_cleanup: true
+  on:
+    tags: true

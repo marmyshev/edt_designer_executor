@@ -1,4 +1,4 @@
-# 1C:EDT Designer Executor
+# 1C:EDT Designer Executor [![Build Status](https://travis-ci.org/marmyshev/edt_designer_executor.svg?branch=master)](https://travis-ci.org/marmyshev/edt_designer_executor)
 
 ## Eclipse extension plugin for [1C:Enterprise Development Tools](http://1c-dn.com/1c_enterprise/1c_enterprise_developmet_tools_graphite/)
 
