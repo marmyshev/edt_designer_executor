@@ -1,10 +1,13 @@
 package com.marmyshev.dt.designer.executor;
 
+import java.io.File;
 import java.nio.file.Path;
 
 import com._1c.g5.v8.dt.common.Pair;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.RuntimeExecutionArguments;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.ILaunchableRuntimeComponent;
+import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.IThickClientLauncher;
+import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.RuntimeVersionRequiredException;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.impl.RuntimeExecutionCommandBuilder$ThickClientMode;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.impl.ThickClientLauncher;
 import com._1c.g5.v8.dt.platform.services.model.InfobaseReference;
@@ -19,8 +22,8 @@ public class AdvancedThickClientLauncher
         super();
     }
 
-	@Override
-	public void startDesigner(ILaunchableRuntimeComponent component, InfobaseReference infobase,
+    @Override
+    public void startDesigner(ILaunchableRuntimeComponent component, InfobaseReference infobase,
 			RuntimeExecutionArguments executionArguments) {
 
 		RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
@@ -32,15 +35,25 @@ public class AdvancedThickClientLauncher
 
 		appendInfobaseAccess(builder, executionArguments);
 
-		executeRuntimeProcessCommand(builder);
-
-
-        // TODO: Find new version from exeption
-
-        // thickClient =
-        // findRequired(com._1c.g5.v8.dt.platform.services.core.runtimes.execution.RuntimeVersionRequiredException.getVersion(),
-        // com._1c.g5.v8.dt.platform.services.core.runtimes.execution.RuntimeVersionRequiredException.getBuild());
-
+        try
+        {
+            this.executeRuntimeProcessCommand(builder);
+        }
+        catch (Throwable e)
+        {
+            if (e instanceof RuntimeVersionRequiredException)
+            {
+                RuntimeVersionRequiredException versionRequired = (RuntimeVersionRequiredException)e;
+                Pair thickClient;
+                ((IThickClientLauncher)(thickClient =
+                    this.findRequired(versionRequired.getVersion(), versionRequired.getBuild())).second).updateInfobase(
+                        (ILaunchableRuntimeComponent)thickClient.first, infobase, executionArguments);
+            }
+            else
+            {
+                throw e;
+            }
+        }
     }
 
     @Override
@@ -66,6 +79,8 @@ public class AdvancedThickClientLauncher
         RuntimeExecutionArguments executionArguments)
     {
 
+        File launchable = component.getLaunchable();
+
         RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
             RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
 
@@ -75,12 +90,7 @@ public class AdvancedThickClientLauncher
 
         appendInfobaseAccess(builder, executionArguments);
 
-        // TODO: Catch RuntimeExecption
-
-        Pair<String, Process> thickClient =
-            new Pair<String, Process>(component.getLaunchable().getAbsolutePath(), builder.start());
-        return thickClient;
-
+        return new Pair<String, Process>(launchable.getAbsolutePath(), builder.start());
     }
 
 }
