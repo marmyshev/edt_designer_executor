@@ -1,0 +1,13 @@
+language: java
+jdk:
+  - oraclejdk8
+sudo: false
+script: mvn --batch-mode --errors --fail-at-end --show-version -s build/settings.xml -Dpartners.v8.1c.ru.username=$USERNAME_1C -Dpartners.v8.1c.ru.password=$PASSWORD_1C clean verify -f build/pom.xml
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_OAUTH_TOKEN
+  file: $TRAVIS_BUILD_DIR/repository/target/repository-1.0.0-SNAPSHOT.zip
+  skip_cleanup: true
+  on:
+    tags: true

@@ -9,6 +9,7 @@ import com._1c.g5.v8.dt.platform.services.core.runtimes.IRuntimeInstallationMana
 import com._1c.g5.v8.dt.platform.services.core.runtimes.environments.IResolvableRuntimeInstallationManager;
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.IRuntimeComponentManager;
 import com._1c.g5.wiring.AbstractServiceAwareModule;
+import com._1c.g5.wiring.ServiceProperties;
 import com.google.inject.name.Names;
 
 /**
@@ -28,8 +29,8 @@ public class ExternalDependencies
     {
         bind(IInfobaseManager.class).toService();
         bind(IRuntimeInstallationManager.class).annotatedWith(
-            Names.named("com._1c.g5.v8.dt.platform.services.core.runtimeType.EnterprisePlatform")) //$NON-NLS-1$
-            .toService();
+            Names.named("com._1c.g5.v8.dt.platform.services.core.runtimeType.EnterprisePlatform")).toService( //$NON-NLS-1$
+                ServiceProperties.named("com._1c.g5.v8.dt.platform.services.core.runtimeType.EnterprisePlatform")); //$NON-NLS-1$
         bind(IRuntimeComponentManager.class).toService();
         bind(IResolvableRuntimeInstallationManager.class).toService();
         bind(IInfobaseAccessManager.class).toService();
