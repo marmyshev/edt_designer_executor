@@ -127,7 +127,7 @@ public class InfobaseDesignerAction
         ISelection selection = page.getSelection();
         List<InfobaseReference> infobases = new ArrayList<>();
 
-        if (selection != null & selection instanceof IStructuredSelection)
+        if (selection != null && selection instanceof IStructuredSelection)
         {
             IStructuredSelection strucSelection = (IStructuredSelection)selection;
             for (Iterator<Object> iterator = strucSelection.iterator(); iterator.hasNext();)

@@ -7,11 +7,11 @@ import java.io.File;
 
 import com._1c.g5.v8.dt.platform.services.core.runtimes.execution.impl.RuntimeExecutionCommandBuilder$ThickClientMode;
 
-public class RuntimeExecutionCommandBuilder
+public class DesignerExecutionCommandBuilder
     extends com._1c.g5.v8.dt.platform.services.core.runtimes.execution.impl.RuntimeExecutionCommandBuilder
 {
 
-    public RuntimeExecutionCommandBuilder(File file, RuntimeExecutionCommandBuilder$ThickClientMode clientMode)
+    public DesignerExecutionCommandBuilder(File file, RuntimeExecutionCommandBuilder$ThickClientMode clientMode)
     {
         super(file, clientMode);
     }

@@ -29,7 +29,7 @@ public class AdvancedThickClientLauncher
     public void startDesigner(ILaunchableRuntimeComponent component, InfobaseReference infobase,
 			RuntimeExecutionArguments executionArguments) {
 
-		RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
+		DesignerExecutionCommandBuilder builder = new DesignerExecutionCommandBuilder(component.getLaunchable(),
 				RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
 
 		builder.visible();
@@ -64,7 +64,7 @@ public class AdvancedThickClientLauncher
         RuntimeExecutionArguments executionArguments, Path file)
     {
 
-        RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
+        DesignerExecutionCommandBuilder builder = new DesignerExecutionCommandBuilder(component.getLaunchable(),
             RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
 
         builder.forInfobase(infobase, splitInfobaseConnection());
@@ -84,7 +84,7 @@ public class AdvancedThickClientLauncher
 
         File launchable = component.getLaunchable();
 
-        RuntimeExecutionCommandBuilder builder = new RuntimeExecutionCommandBuilder(component.getLaunchable(),
+        DesignerExecutionCommandBuilder builder = new DesignerExecutionCommandBuilder(component.getLaunchable(),
             RuntimeExecutionCommandBuilder$ThickClientMode.DESIGNER);
 
         builder.visible();
