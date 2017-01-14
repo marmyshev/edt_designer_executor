@@ -4,11 +4,9 @@
 
 Allows to run [1C:Enterprise Designer](http://1c-dn.com/glossary/designer/) with any selected [Infobases](http://1c-dn.com/glossary/infobase/) or with [Infobases](http://1c-dn.com/glossary/infobase/) of a project.
 
-Still under construction.
-
 ## Installation
 
-Add Eclipse Update Site to your 1C:EDT installation: [https://marmyshev.github.io/updates/edt/designer_executor](https://marmyshev.github.io/updates/edt/designer_executor)
+Add Eclipse Update Site to your 1C:EDT installation: [https://marmyshev.github.io/updates/edt/designer_executor](https://marmyshev.github.io/updates/edt/designer_executor) and install the plugin.
 
 ### Necessary components
 
@@ -48,9 +46,9 @@ Able to launch Designer from standard launch configs. To the toolbar added a but
 
 Позволяет запускать [1С:Конфигуратор](http://v8.1c.ru/overview/Term_000000008.htm) в любых выбранных  [Информационных базах](http://v8.1c.ru/overview/Term_000000641.htm) или в [Информационных базах](http://v8.1c.ru/overview/Term_000000641.htm) привязанных к проекту.
 
-Плагин еще в разработке.
-
 ## Установка
+
+Добавьте репозиторий обновлений Eclipse Update Site в установленную 1C:EDT: [https://marmyshev.github.io/updates/edt/designer_executor](https://marmyshev.github.io/updates/edt/designer_executor) и установите из репозитория плагин.
 
 ### Необходимые компоненты
 
@@ -60,10 +58,18 @@ Able to launch Designer from standard launch configs. To the toolbar added a but
 
 ### Сборка с Maven
 
+Сначала необходимо установить сам Maven отсюда (https://maven.apache.org/download.cgi) по инструкции отсюда (https://maven.apache.org/install.html) и задать зашифрованный пароль для пользователя (https://partners.v8.1c.ru) в файле settings.xml [см. пример здесь](https://github.com/1C-Company/dt-example-plugins/tree/master/simple-plugin).
 
+1. Откройте консоль в папке плагина
+2. Выполните команду:
+```
+mvn clean verify -f build/pom.xml
+```
+3. Собранный p2 репозиторий находится в подпапке:
+```
+/..ПутьКПапкеПлагина../repository/target/repository/
+```
  
-Скоро будет.
-
 ## Использование
 
 Запустите [1C:Enterprise Development Tools](http://v8.1c.ru/overview/release_IDE_beta/).
