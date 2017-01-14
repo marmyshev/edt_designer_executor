@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2016, Dmitriy Marmyshev
+ */
 package com.marmyshev.dt.designer.executor.ui;
 
 import org.eclipse.core.commands.AbstractHandler;

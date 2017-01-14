@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2016, Dmitriy Marmyshev
+ */
 package com.marmyshev.dt.designer.executor.internal;
 
 import org.osgi.framework.Bundle;

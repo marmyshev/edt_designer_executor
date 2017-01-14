@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2016, Dmitriy Marmyshev
+ */
 package com.marmyshev.dt.designer.executor;
 
 import org.eclipse.core.runtime.Plugin;

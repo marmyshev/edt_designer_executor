@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016, 1C
+ * Copyright (C) 2016, Dmitriy Marmyshev
  */
 package com.marmyshev.dt.designer.executor.ui;
 

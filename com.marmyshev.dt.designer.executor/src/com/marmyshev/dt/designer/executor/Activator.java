@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2016, Dmitriy Marmyshev
+ */
 package com.marmyshev.dt.designer.executor;
 
 import org.eclipse.core.runtime.IStatus;
@@ -120,7 +123,9 @@ public class Activator
     public synchronized Injector getInjector()
     {
         if (injector == null)
+        {
             return injector = createInjector();
+        }
         return injector;
     }
 
